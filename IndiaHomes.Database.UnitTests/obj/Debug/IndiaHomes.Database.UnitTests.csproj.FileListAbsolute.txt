@@ -1,0 +1,12 @@
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\IndiaHomes.Database.UnitTests.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\IndiaHomes.Database.UnitTests.pdb
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\IndiaHomesDAL.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\EntityFramework.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\IndiaHomesDAL.pdb
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\EntityFramework.xml
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\obj\Debug\IndiaHomes.Database.UnitTests.csprojResolveAssemblyReference.cache
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\obj\Debug\IndiaHomes.Database.UnitTests.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\obj\Debug\IndiaHomes.Database.UnitTests.pdb
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\IndiaHomes.Database.UnitTests.dll.config
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\EntityFramework.SqlServer.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomes.Database.UnitTests\bin\Debug\EntityFramework.SqlServer.xml
