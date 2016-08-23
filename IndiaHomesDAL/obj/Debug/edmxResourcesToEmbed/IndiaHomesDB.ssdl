@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IndiaHomesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="IndiaHomesModelStoreContainer">
+    <EntitySet Name="Account" EntityType="IndiaHomesModel.Store.Account" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="IndiaHomesModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Amenities" EntityType="IndiaHomesModel.Store.Amenities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AppException" EntityType="IndiaHomesModel.Store.AppException" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Availibility" EntityType="IndiaHomesModel.Store.Availibility" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customer" EntityType="IndiaHomesModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DBException" EntityType="IndiaHomesModel.Store.DBException" store:Type="Tables" store:Schema="dbo" store:Name="DBException">
+      <DefiningQuery>SELECT 
+      [DBException].[SessionId] AS [SessionId], 
+      [DBException].[SourceProcedure] AS [SourceProcedure], 
+      [DBException].[LineNo] AS [LineNo], 
+      [DBException].[Message] AS [Message], 
+      [DBException].[ErrorNo] AS [ErrorNo], 
+      [DBException].[Timestamp] AS [Timestamp]
+      FROM [dbo].[DBException] AS [DBException]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Hotel" EntityType="IndiaHomesModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HotelAmenities" EntityType="IndiaHomesModel.Store.HotelAmenities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HotelRoom" EntityType="IndiaHomesModel.Store.HotelRoom" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Order" EntityType="IndiaHomesModel.Store.Order" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PromoCode" EntityType="IndiaHomesModel.Store.PromoCode" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Availibility_HotelRoom" Association="IndiaHomesModel.Store.FK_Availibility_HotelRoom">
+      <End Role="HotelRoom" EntitySet="HotelRoom" />
+      <End Role="Availibility" EntitySet="Availibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_Addresses" Association="IndiaHomesModel.Store.FK_Hotel_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Hotel" EntitySet="Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelRoom_Hotel" Association="IndiaHomesModel.Store.FK_HotelRoom_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelRoom" EntitySet="HotelRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account" Association="IndiaHomesModel.Store.FK_Order_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Customer" Association="IndiaHomesModel.Store.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_HotelRoom" Association="IndiaHomesModel.Store.FK_Order_HotelRoom">
+      <End Role="HotelRoom" EntitySet="HotelRoom" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LockedStatus" Type="bit" Nullable="false" />
+    <Property Name="EmailId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="NoOfAttempts" Type="int" Nullable="false" />
+    <Property Name="LockedTime" Type="datetime2" Nullable="false" />
+    <Property Name="LastFailedLogin" Type="datetime2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Street" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Region" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Amenities">
+    <Key>
+      <PropertyRef Name="AmenityId" />
+    </Key>
+    <Property Name="AmenityId" Type="int" Nullable="false" />
+    <Property Name="AmenityName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AppException">
+    <Key>
+      <PropertyRef Name="ExceptionId" />
+    </Key>
+    <Property Name="SessionId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Exception" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime2" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ExceptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="InnerException" Type="nvarchar(max)" />
+    <Property Name="StackTrace" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Availibility">
+    <Key>
+      <PropertyRef Name="HotelId" />
+      <PropertyRef Name="RoomId" />
+      <PropertyRef Name="CheckInDate" />
+      <PropertyRef Name="CheckOutDate" />
+    </Key>
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="CheckInDate" Type="datetime2" Nullable="false" />
+    <Property Name="CheckOutDate" Type="datetime2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="MobileNumber" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailId" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'IndiaHomes.dbo.DBException' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="DBException">
+    <Key>
+      <PropertyRef Name="SessionId" />
+      <PropertyRef Name="SourceProcedure" />
+      <PropertyRef Name="Timestamp" />
+    </Key>
+    <Property Name="SessionId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SourceProcedure" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LineNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="ErrorNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Timestamp" Type="datetime2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="HotelId" />
+    </Key>
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="Ratings" Type="int" />
+    <Property Name="Longitude" Type="decimal" Nullable="false" Precision="15" Scale="9" />
+    <Property Name="Latitude" Type="decimal" Nullable="false" Precision="15" Scale="9" />
+    <Property Name="AddressId" Type="int" />
+  </EntityType>
+  <EntityType Name="HotelAmenities">
+    <Key>
+      <PropertyRef Name="AmenityId" />
+      <PropertyRef Name="HotelId" />
+    </Key>
+    <Property Name="AmenityId" Type="int" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelRoom">
+    <Key>
+      <PropertyRef Name="RoomId" />
+      <PropertyRef Name="HotelId" />
+    </Key>
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="decimal" Nullable="false" Scale="3" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="BookingNumber" />
+    </Key>
+    <Property Name="BookingNumber" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="CheckInDate" Type="datetime2" />
+    <Property Name="CheckOutDate" Type="datetime2" />
+    <Property Name="Cost" Type="decimal" Nullable="false" Scale="3" />
+    <Property Name="Discount" Type="decimal" Scale="3" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddedDate" Type="datetime2" />
+    <Property Name="ModifiedDate" Type="datetime2" />
+  </EntityType>
+  <EntityType Name="PromoCode">
+    <Key>
+      <PropertyRef Name="PromoId" />
+    </Key>
+    <Property Name="PromoId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="MaxDisc" Type="decimal" Scale="3" />
+    <Property Name="MinAmount" Type="decimal" Scale="3" />
+    <Property Name="ValidToDate" Type="datetime" />
+    <Property Name="ValidFromDate" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TypeOfCode" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Availibility_HotelRoom">
+    <End Role="HotelRoom" Type="IndiaHomesModel.Store.HotelRoom" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Availibility" Type="IndiaHomesModel.Store.Availibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelRoom">
+        <PropertyRef Name="RoomId" />
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="Availibility">
+        <PropertyRef Name="RoomId" />
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_Addresses">
+    <End Role="Addresses" Type="IndiaHomesModel.Store.Addresses" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hotel" Type="IndiaHomesModel.Store.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelRoom_Hotel">
+    <End Role="Hotel" Type="IndiaHomesModel.Store.Hotel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="HotelRoom" Type="IndiaHomesModel.Store.HotelRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="HotelRoom">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Account">
+    <End Role="Account" Type="IndiaHomesModel.Store.Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="IndiaHomesModel.Store.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="IndiaHomesModel.Store.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="IndiaHomesModel.Store.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_HotelRoom">
+    <End Role="HotelRoom" Type="IndiaHomesModel.Store.HotelRoom" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="IndiaHomesModel.Store.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelRoom">
+        <PropertyRef Name="RoomId" />
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="RoomId" />
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fnCalculateGeoDistance" ReturnType="float" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dlat1" Type="float" Mode="In" />
+    <Parameter Name="dlon1" Type="float" Mode="In" />
+    <Parameter Name="dlat2" Type="float" Mode="In" />
+    <Parameter Name="dlon2" Type="float" Mode="In" />
+  </Function>
+  <Function Name="InsertHotelRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="InsertIntoAdress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spCancelBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="orderId" Type="bigint" Mode="In" />
+    <Parameter Name="status" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+    <Parameter Name="errorMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="spCreateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstname" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="emailid" Type="nvarchar" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spCreateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bookingNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="checkInDate" Type="datetime" Mode="In" />
+    <Parameter Name="checkOutDate" Type="datetime" Mode="In" />
+    <Parameter Name="cost" Type="decimal" Mode="In" />
+    <Parameter Name="discount" Type="decimal" Mode="In" />
+    <Parameter Name="status" Type="nvarchar" Mode="In" />
+    <Parameter Name="hotelId" Type="int" Mode="In" />
+    <Parameter Name="roomId" Type="int" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="mobileNumber" Type="varchar" Mode="In" />
+    <Parameter Name="emailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spDBException" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sessionId" Type="nvarchar" Mode="In" />
+    <Parameter Name="sourceProcedure" Type="nvarchar" Mode="In" />
+    <Parameter Name="lineNo" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="message" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="errorNo" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spGetHotelRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hotelId" Type="int" Mode="In" />
+    <Parameter Name="checkInDate" Type="datetime" Mode="In" />
+    <Parameter Name="checkOutDate" Type="datetime" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetHotels" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="latitude" Type="decimal" Mode="In" />
+    <Parameter Name="longitude" Type="decimal" Mode="In" />
+    <Parameter Name="hotelName" Type="nvarchar" Mode="In" />
+    <Parameter Name="starRating" Type="int" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="orderId" Type="nvarchar" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetUserAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="enteredUsername" Type="nvarchar" Mode="In" />
+    <Parameter Name="enteredPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+    <Parameter Name="errorMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="spLogAppException" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sessionId" Type="nvarchar" Mode="In" />
+    <Parameter Name="exception" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="timeStamp" Type="datetime2" Mode="In" />
+    <Parameter Name="message" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="innerException" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="stackTrace" Type="nvarchar(max)" Mode="In" />
+  </Function>
+</Schema>

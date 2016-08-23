@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16F2BE78-9734-4525-82EF-9056CE645F20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IndiaHomesDAL</RootNamespace>
+    <AssemblyName>IndiaHomesDAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Amenity.cs" />
+    <Compile Include="Models\AppException.cs" />
+    <Compile Include="Models\Availibility.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DBException.cs" />
+    <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\HotelAmenity.cs" />
+    <Compile Include="Models\HotelRoom.cs" />
+    <Compile Include="Models\IndiaHomesContext.cs" />
+    <Compile Include="Models\Mapping\AccountMap.cs" />
+    <Compile Include="Models\Mapping\AddressMap.cs" />
+    <Compile Include="Models\Mapping\AmenityMap.cs" />
+    <Compile Include="Models\Mapping\AppExceptionMap.cs" />
+    <Compile Include="Models\Mapping\AvailibilityMap.cs" />
+    <Compile Include="Models\Mapping\CustomerMap.cs" />
+    <Compile Include="Models\Mapping\DBExceptionMap.cs" />
+    <Compile Include="Models\Mapping\HotelAmenityMap.cs" />
+    <Compile Include="Models\Mapping\HotelMap.cs" />
+    <Compile Include="Models\Mapping\HotelRoomMap.cs" />
+    <Compile Include="Models\Mapping\OrderMap.cs" />
+    <Compile Include="Models\Mapping\PromoCodeMap.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\PromoCode.cs" />
+    <Compile Include="Repositories\Contexts\IndiaHomesEFContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Interfaces\IAccountRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IHotelRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IHotelRoomsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IOrderRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\RequestEntities\CreateOrderSqlParams.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\RequestEntities\DeleteOrderSqlParams.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\RequestEntities\GetHotelRoomsSqlParams.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\RequestEntities\GetHotelsSqlParams.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\RequestEntities\GetOrderRequestSqlParams.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\RequestEntities\GetOrdersRequestSqlParams.cs" />
+    <Compile Include="Repositories\RepoImplementation\DbEntitities\ResponseEntities\OrderEntity.cs" />
+    <Compile Include="Repositories\RepoImplementation\SQLServerRepos\AccountRepository.cs" />
+    <Compile Include="Repositories\RepoImplementation\SQLServerRepos\HotelRepository.cs" />
+    <Compile Include="Repositories\RepoImplementation\SQLServerRepos\HotelRoomsRepository.cs" />
+    <Compile Include="Repositories\RepoImplementation\SQLServerRepos\OrderRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Translators\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

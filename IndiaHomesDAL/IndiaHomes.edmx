@@ -1,0 +1,1114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IndiaHomesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="IndiaHomesModelStoreContainer">
+          <EntitySet Name="Account" EntityType="IndiaHomesModel.Store.Account" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Addresses" EntityType="IndiaHomesModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Amenities" EntityType="IndiaHomesModel.Store.Amenities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AppException" EntityType="IndiaHomesModel.Store.AppException" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Availibility" EntityType="IndiaHomesModel.Store.Availibility" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="IndiaHomesModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DBException" EntityType="IndiaHomesModel.Store.DBException" store:Type="Tables" store:Schema="dbo" store:Name="DBException">
+            <DefiningQuery>SELECT 
+      [DBException].[SessionId] AS [SessionId], 
+      [DBException].[SourceProcedure] AS [SourceProcedure], 
+      [DBException].[LineNo] AS [LineNo], 
+      [DBException].[Message] AS [Message], 
+      [DBException].[ErrorNo] AS [ErrorNo], 
+      [DBException].[Timestamp] AS [Timestamp]
+      FROM [dbo].[DBException] AS [DBException]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Hotel" EntityType="IndiaHomesModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HotelAmenities" EntityType="IndiaHomesModel.Store.HotelAmenities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HotelRoom" EntityType="IndiaHomesModel.Store.HotelRoom" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="IndiaHomesModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PromoCode" EntityType="IndiaHomesModel.Store.PromoCode" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Availibility_HotelRoom" Association="IndiaHomesModel.Store.FK_Availibility_HotelRoom">
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+            <End Role="Availibility" EntitySet="Availibility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hotel_Addresses" Association="IndiaHomesModel.Store.FK_Hotel_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Hotel" EntitySet="Hotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoom_Hotel" Association="IndiaHomesModel.Store.FK_HotelRoom_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Account" Association="IndiaHomesModel.Store.FK_Order_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="IndiaHomesModel.Store.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_HotelRoom" Association="IndiaHomesModel.Store.FK_Order_HotelRoom">
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LockedStatus" Type="bit" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="NoOfAttempts" Type="int" Nullable="false" />
+          <Property Name="LockedTime" Type="datetime2" Nullable="false" />
+          <Property Name="LastFailedLogin" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Amenities">
+          <Key>
+            <PropertyRef Name="AmenityId" />
+          </Key>
+          <Property Name="AmenityId" Type="int" Nullable="false" />
+          <Property Name="AmenityName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AppException">
+          <Key>
+            <PropertyRef Name="ExceptionId" />
+          </Key>
+          <Property Name="SessionId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Exception" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime2" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ExceptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InnerException" Type="nvarchar(max)" />
+          <Property Name="StackTrace" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Availibility">
+          <Key>
+            <PropertyRef Name="HotelId" />
+            <PropertyRef Name="RoomId" />
+            <PropertyRef Name="CheckInDate" />
+            <PropertyRef Name="CheckOutDate" />
+          </Key>
+          <Property Name="HotelId" Type="int" Nullable="false" />
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="CheckInDate" Type="datetime2" Nullable="false" />
+          <Property Name="CheckOutDate" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MobileNumber" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailId" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'IndiaHomes.dbo.DBException' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="DBException">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="SourceProcedure" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="SessionId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SourceProcedure" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LineNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="ErrorNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="HotelId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="Ratings" Type="int" />
+          <Property Name="Longitude" Type="decimal" Nullable="false" Precision="15" Scale="9" />
+          <Property Name="Latitude" Type="decimal" Nullable="false" Precision="15" Scale="9" />
+          <Property Name="AddressId" Type="int" />
+        </EntityType>
+        <EntityType Name="HotelAmenities">
+          <Key>
+            <PropertyRef Name="AmenityId" />
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="AmenityId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelRoom">
+          <Key>
+            <PropertyRef Name="RoomId" />
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Nullable="false" Scale="3" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="BookingNumber" />
+          </Key>
+          <Property Name="BookingNumber" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="CheckInDate" Type="datetime2" />
+          <Property Name="CheckOutDate" Type="datetime2" />
+          <Property Name="Cost" Type="decimal" Nullable="false" Scale="3" />
+          <Property Name="Discount" Type="decimal" Scale="3" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="HotelId" Type="int" Nullable="false" />
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedDate" Type="datetime2" />
+          <Property Name="ModifiedDate" Type="datetime2" />
+        </EntityType>
+        <EntityType Name="PromoCode">
+          <Key>
+            <PropertyRef Name="PromoId" />
+          </Key>
+          <Property Name="PromoId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MaxDisc" Type="decimal" Scale="3" />
+          <Property Name="MinAmount" Type="decimal" Scale="3" />
+          <Property Name="ValidToDate" Type="datetime" />
+          <Property Name="ValidFromDate" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TypeOfCode" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Availibility_HotelRoom">
+          <End Role="HotelRoom" Type="IndiaHomesModel.Store.HotelRoom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Availibility" Type="IndiaHomesModel.Store.Availibility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Availibility">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hotel_Addresses">
+          <End Role="Addresses" Type="IndiaHomesModel.Store.Addresses" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Hotel" Type="IndiaHomesModel.Store.Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Hotel">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoom_Hotel">
+          <End Role="Hotel" Type="IndiaHomesModel.Store.Hotel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelRoom" Type="IndiaHomesModel.Store.HotelRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="HotelRoom">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Account">
+          <End Role="Account" Type="IndiaHomesModel.Store.Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="IndiaHomesModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="IndiaHomesModel.Store.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="IndiaHomesModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_HotelRoom">
+          <End Role="HotelRoom" Type="IndiaHomesModel.Store.HotelRoom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="IndiaHomesModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fnCalculateGeoDistance" ReturnType="float" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dlat1" Type="float" Mode="In" />
+          <Parameter Name="dlon1" Type="float" Mode="In" />
+          <Parameter Name="dlat2" Type="float" Mode="In" />
+          <Parameter Name="dlon2" Type="float" Mode="In" />
+        </Function>
+        <Function Name="InsertHotelRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertIntoAdress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spCancelBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderId" Type="bigint" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+          <Parameter Name="errorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spCreateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstname" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="emailid" Type="nvarchar" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spCreateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bookingNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="checkInDate" Type="datetime" Mode="In" />
+          <Parameter Name="checkOutDate" Type="datetime" Mode="In" />
+          <Parameter Name="cost" Type="decimal" Mode="In" />
+          <Parameter Name="discount" Type="decimal" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+          <Parameter Name="hotelId" Type="int" Mode="In" />
+          <Parameter Name="roomId" Type="int" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="mobileNumber" Type="varchar" Mode="In" />
+          <Parameter Name="emailId" Type="nvarchar" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spDBException" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sessionId" Type="nvarchar" Mode="In" />
+          <Parameter Name="sourceProcedure" Type="nvarchar" Mode="In" />
+          <Parameter Name="lineNo" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="message" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorNo" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spGetHotelRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hotelId" Type="int" Mode="In" />
+          <Parameter Name="checkInDate" Type="datetime" Mode="In" />
+          <Parameter Name="checkOutDate" Type="datetime" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetHotels" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="latitude" Type="decimal" Mode="In" />
+          <Parameter Name="longitude" Type="decimal" Mode="In" />
+          <Parameter Name="hotelName" Type="nvarchar" Mode="In" />
+          <Parameter Name="starRating" Type="int" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="orderId" Type="nvarchar" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetUserAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="enteredUsername" Type="nvarchar" Mode="In" />
+          <Parameter Name="enteredPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="sessId" Type="nvarchar" Mode="In" />
+          <Parameter Name="errorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spLogAppException" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sessionId" Type="nvarchar" Mode="In" />
+          <Parameter Name="exception" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="timeStamp" Type="datetime2" Mode="In" />
+          <Parameter Name="message" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="innerException" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="stackTrace" Type="nvarchar(max)" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IndiaHomesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IndiaHomesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="IndiaHomesModel.Account" />
+          <EntitySet Name="Addresses" EntityType="IndiaHomesModel.Address" />
+          <EntitySet Name="Amenities" EntityType="IndiaHomesModel.Amenity" />
+          <EntitySet Name="AppExceptions" EntityType="IndiaHomesModel.AppException" />
+          <EntitySet Name="Availibilities" EntityType="IndiaHomesModel.Availibility" />
+          <EntitySet Name="Customers" EntityType="IndiaHomesModel.Customer" />
+          <EntitySet Name="DBExceptions" EntityType="IndiaHomesModel.DBException" />
+          <EntitySet Name="Hotels" EntityType="IndiaHomesModel.Hotel" />
+          <EntitySet Name="HotelAmenities" EntityType="IndiaHomesModel.HotelAmenity" />
+          <EntitySet Name="HotelRooms" EntityType="IndiaHomesModel.HotelRoom" />
+          <EntitySet Name="Orders" EntityType="IndiaHomesModel.Order" />
+          <EntitySet Name="PromoCodes" EntityType="IndiaHomesModel.PromoCode" />
+          <AssociationSet Name="FK_Order_Account" Association="IndiaHomesModel.FK_Order_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hotel_Addresses" Association="IndiaHomesModel.FK_Hotel_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Hotel" EntitySet="Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Availibility_HotelRoom" Association="IndiaHomesModel.FK_Availibility_HotelRoom">
+            <End Role="HotelRoom" EntitySet="HotelRooms" />
+            <End Role="Availibility" EntitySet="Availibilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="IndiaHomesModel.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoom_Hotel" Association="IndiaHomesModel.FK_HotelRoom_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelRoom" EntitySet="HotelRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_HotelRoom" Association="IndiaHomesModel.FK_Order_HotelRoom">
+            <End Role="HotelRoom" EntitySet="HotelRooms" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <FunctionImport Name="InsertHotelRooms" />
+          <FunctionImport Name="InsertIntoAdress" />
+          <FunctionImport Name="spCancelBooking">
+            <Parameter Name="orderId" Mode="In" Type="Int64" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+            <Parameter Name="errorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCreateAccount">
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="emailid" Mode="In" Type="String" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCreateOrder">
+            <Parameter Name="bookingNumber" Mode="In" Type="String" />
+            <Parameter Name="checkInDate" Mode="In" Type="DateTime" />
+            <Parameter Name="checkOutDate" Mode="In" Type="DateTime" />
+            <Parameter Name="cost" Mode="In" Type="Decimal" />
+            <Parameter Name="discount" Mode="In" Type="Decimal" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="hotelId" Mode="In" Type="Int32" />
+            <Parameter Name="roomId" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="mobileNumber" Mode="In" Type="String" />
+            <Parameter Name="emailId" Mode="In" Type="String" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spDBException">
+            <Parameter Name="sessionId" Mode="In" Type="String" />
+            <Parameter Name="sourceProcedure" Mode="In" Type="String" />
+            <Parameter Name="lineNo" Mode="In" Type="String" />
+            <Parameter Name="message" Mode="In" Type="String" />
+            <Parameter Name="errorNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetHotelRooms" ReturnType="Collection(IndiaHomesModel.spGetHotelRooms_Result)">
+            <Parameter Name="hotelId" Mode="In" Type="Int32" />
+            <Parameter Name="checkInDate" Mode="In" Type="DateTime" />
+            <Parameter Name="checkOutDate" Mode="In" Type="DateTime" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetHotels" ReturnType="Collection(IndiaHomesModel.spGetHotels_Result)">
+            <Parameter Name="latitude" Mode="In" Type="Decimal" />
+            <Parameter Name="longitude" Mode="In" Type="Decimal" />
+            <Parameter Name="hotelName" Mode="In" Type="String" />
+            <Parameter Name="starRating" Mode="In" Type="Int32" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetOrder" ReturnType="Collection(IndiaHomesModel.spGetOrder_Result)">
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="orderId" Mode="In" Type="String" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetOrders" ReturnType="Collection(IndiaHomesModel.spGetOrders_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetUserAccount" ReturnType="Collection(IndiaHomesModel.spGetUserAccount_Result)">
+            <Parameter Name="enteredUsername" Mode="In" Type="String" />
+            <Parameter Name="enteredPassword" Mode="In" Type="String" />
+            <Parameter Name="sessId" Mode="In" Type="String" />
+            <Parameter Name="errorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spLogAppException">
+            <Parameter Name="sessionId" Mode="In" Type="String" />
+            <Parameter Name="exception" Mode="In" Type="String" />
+            <Parameter Name="timeStamp" Mode="In" Type="DateTime" />
+            <Parameter Name="message" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="innerException" Mode="In" Type="String" />
+            <Parameter Name="stackTrace" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LockedStatus" Type="Boolean" Nullable="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NoOfAttempts" Type="Int32" Nullable="false" />
+          <Property Name="LockedTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastFailedLogin" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Orders" Relationship="IndiaHomesModel.FK_Order_Account" FromRole="Account" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Region" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Hotels" Relationship="IndiaHomesModel.FK_Hotel_Addresses" FromRole="Addresses" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="Amenity">
+          <Key>
+            <PropertyRef Name="AmenityId" />
+          </Key>
+          <Property Name="AmenityId" Type="Int32" Nullable="false" />
+          <Property Name="AmenityName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AppException">
+          <Key>
+            <PropertyRef Name="ExceptionId" />
+          </Key>
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Exception" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Message" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ExceptionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="InnerException" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Availibility">
+          <Key>
+            <PropertyRef Name="HotelId" />
+            <PropertyRef Name="RoomId" />
+            <PropertyRef Name="CheckInDate" />
+            <PropertyRef Name="CheckOutDate" />
+          </Key>
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="HotelRoom" Relationship="IndiaHomesModel.FK_Availibility_HotelRoom" FromRole="Availibility" ToRole="HotelRoom" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Orders" Relationship="IndiaHomesModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="DBException">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="SourceProcedure" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SourceProcedure" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LineNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ErrorNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ratings" Type="Int32" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="15" Scale="9" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="15" Scale="9" />
+          <Property Name="AddressId" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="IndiaHomesModel.FK_Hotel_Addresses" FromRole="Hotel" ToRole="Addresses" />
+          <NavigationProperty Name="HotelRooms" Relationship="IndiaHomesModel.FK_HotelRoom_Hotel" FromRole="Hotel" ToRole="HotelRoom" />
+        </EntityType>
+        <EntityType Name="HotelAmenity">
+          <Key>
+            <PropertyRef Name="AmenityId" />
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="AmenityId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelRoom">
+          <Key>
+            <PropertyRef Name="RoomId" />
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <NavigationProperty Name="Availibilities" Relationship="IndiaHomesModel.FK_Availibility_HotelRoom" FromRole="HotelRoom" ToRole="Availibility" />
+          <NavigationProperty Name="Hotel" Relationship="IndiaHomesModel.FK_HotelRoom_Hotel" FromRole="HotelRoom" ToRole="Hotel" />
+          <NavigationProperty Name="Orders" Relationship="IndiaHomesModel.FK_Order_HotelRoom" FromRole="HotelRoom" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="BookingNumber" />
+          </Key>
+          <Property Name="BookingNumber" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="7" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="7" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AddedDate" Type="DateTime" Precision="7" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="IndiaHomesModel.FK_Order_Account" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="Customer" Relationship="IndiaHomesModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="HotelRoom" Relationship="IndiaHomesModel.FK_Order_HotelRoom" FromRole="Order" ToRole="HotelRoom" />
+        </EntityType>
+        <EntityType Name="PromoCode">
+          <Key>
+            <PropertyRef Name="PromoId" />
+          </Key>
+          <Property Name="PromoId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MaxDisc" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="MinAmount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ValidToDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidFromDate" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TypeOfCode" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Order_Account">
+          <End Role="Account" Type="IndiaHomesModel.Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="IndiaHomesModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hotel_Addresses">
+          <End Role="Addresses" Type="IndiaHomesModel.Address" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Hotel" Type="IndiaHomesModel.Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Hotel">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Availibility_HotelRoom">
+          <End Role="HotelRoom" Type="IndiaHomesModel.HotelRoom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Availibility" Type="IndiaHomesModel.Availibility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Availibility">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="IndiaHomesModel.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="IndiaHomesModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoom_Hotel">
+          <End Role="Hotel" Type="IndiaHomesModel.Hotel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelRoom" Type="IndiaHomesModel.HotelRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="HotelRoom">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_HotelRoom">
+          <End Role="HotelRoom" Type="IndiaHomesModel.HotelRoom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="IndiaHomesModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="RoomId" />
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spGetHotelRooms_Result">
+          <Property Type="Int32" Name="RoomId" Nullable="true" />
+          <Property Type="Int32" Name="HotelId" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="ImageUrl" Nullable="true" />
+          <Property Type="String" Name="TypeName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="spGetHotels_Result">
+          <Property Type="Int32" Name="HotelId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="ImageUrl" Nullable="true" />
+          <Property Type="Int32" Name="Ratings" Nullable="true" />
+          <Property Type="Decimal" Name="Longitude" Nullable="false" Precision="15" Scale="9" />
+          <Property Type="Decimal" Name="Latitude" Nullable="false" Precision="15" Scale="9" />
+          <Property Type="Int32" Name="AddressId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetOrder_Result">
+          <Property Type="String" Name="BookingNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CustomerId" Nullable="true" />
+          <Property Type="DateTime" Name="CheckInDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CheckOutDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Cost" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="HotelId" Nullable="true" />
+          <Property Type="Int32" Name="RoomId" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="AddedDate" Nullable="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Coyntry" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Region" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Street" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HotelDescription" Nullable="true" />
+          <Property Type="String" Name="HotelImages" Nullable="true" />
+          <Property Type="Decimal" Name="Latitude" Nullable="false" Precision="15" Scale="9" />
+          <Property Type="Decimal" Name="Longitude" Nullable="false" Precision="15" Scale="9" />
+          <Property Type="String" Name="HotelName" Nullable="false" />
+          <Property Type="Int32" Name="Ratings" Nullable="true" />
+          <Property Type="String" Name="RoomDescription" Nullable="true" />
+          <Property Type="String" Name="RoomImages" Nullable="true" />
+          <Property Type="String" Name="RoomType" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spGetOrders_Result">
+          <Property Type="String" Name="BookingNumber" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CheckInDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CheckOutDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Cost" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="AddedDate" Nullable="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Region" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Street" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HotelDescription" Nullable="true" />
+          <Property Type="String" Name="HotelImages" Nullable="true" />
+          <Property Type="Decimal" Name="Latitude" Nullable="false" Precision="15" Scale="9" />
+          <Property Type="Decimal" Name="Longitude" Nullable="false" Precision="15" Scale="9" />
+          <Property Type="String" Name="HotelName" Nullable="false" />
+          <Property Type="Int32" Name="Ratings" Nullable="true" />
+          <Property Type="String" Name="RoomDescription" Nullable="true" />
+          <Property Type="String" Name="RoomImages" Nullable="true" />
+          <Property Type="String" Name="RoomType" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spGetUserAccount_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IndiaHomesModelStoreContainer" CdmEntityContainer="IndiaHomesEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="LockedStatus" ColumnName="LockedStatus" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="NoOfAttempts" ColumnName="NoOfAttempts" />
+                <ScalarProperty Name="LockedTime" ColumnName="LockedTime" />
+                <ScalarProperty Name="LastFailedLogin" ColumnName="LastFailedLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Amenities">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Amenity">
+              <MappingFragment StoreEntitySet="Amenities">
+                <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+                <ScalarProperty Name="AmenityName" ColumnName="AmenityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppExceptions">
+            <EntityTypeMapping TypeName="IndiaHomesModel.AppException">
+              <MappingFragment StoreEntitySet="AppException">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ExceptionId" ColumnName="ExceptionId" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Availibilities">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Availibility">
+              <MappingFragment StoreEntitySet="Availibility">
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DBExceptions">
+            <EntityTypeMapping TypeName="IndiaHomesModel.DBException">
+              <MappingFragment StoreEntitySet="DBException">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="SourceProcedure" ColumnName="SourceProcedure" />
+                <ScalarProperty Name="LineNo" ColumnName="LineNo" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ErrorNo" ColumnName="ErrorNo" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotel">
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelAmenities">
+            <EntityTypeMapping TypeName="IndiaHomesModel.HotelAmenity">
+              <MappingFragment StoreEntitySet="HotelAmenities">
+                <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelRooms">
+            <EntityTypeMapping TypeName="IndiaHomesModel.HotelRoom">
+              <MappingFragment StoreEntitySet="HotelRoom">
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="IndiaHomesModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromoCodes">
+            <EntityTypeMapping TypeName="IndiaHomesModel.PromoCode">
+              <MappingFragment StoreEntitySet="PromoCode">
+                <ScalarProperty Name="PromoId" ColumnName="PromoId" />
+                <ScalarProperty Name="MaxDisc" ColumnName="MaxDisc" />
+                <ScalarProperty Name="MinAmount" ColumnName="MinAmount" />
+                <ScalarProperty Name="ValidToDate" ColumnName="ValidToDate" />
+                <ScalarProperty Name="ValidFromDate" ColumnName="ValidFromDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeOfCode" ColumnName="TypeOfCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertHotelRooms" FunctionName="IndiaHomesModel.Store.InsertHotelRooms" />
+          <FunctionImportMapping FunctionImportName="InsertIntoAdress" FunctionName="IndiaHomesModel.Store.InsertIntoAdress" />
+          <FunctionImportMapping FunctionImportName="spCancelBooking" FunctionName="IndiaHomesModel.Store.spCancelBooking" />
+          <FunctionImportMapping FunctionImportName="spCreateAccount" FunctionName="IndiaHomesModel.Store.spCreateAccount" />
+          <FunctionImportMapping FunctionImportName="spCreateOrder" FunctionName="IndiaHomesModel.Store.spCreateOrder" />
+          <FunctionImportMapping FunctionImportName="spDBException" FunctionName="IndiaHomesModel.Store.spDBException" />
+          <FunctionImportMapping FunctionImportName="spGetHotelRooms" FunctionName="IndiaHomesModel.Store.spGetHotelRooms">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IndiaHomesModel.spGetHotelRooms_Result">
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetHotels" FunctionName="IndiaHomesModel.Store.spGetHotels">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IndiaHomesModel.spGetHotels_Result">
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetOrder" FunctionName="IndiaHomesModel.Store.spGetOrder">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IndiaHomesModel.spGetOrder_Result">
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Coyntry" ColumnName="Coyntry" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HotelDescription" ColumnName="HotelDescription" />
+                <ScalarProperty Name="HotelImages" ColumnName="HotelImages" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+                <ScalarProperty Name="RoomDescription" ColumnName="RoomDescription" />
+                <ScalarProperty Name="RoomImages" ColumnName="RoomImages" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetOrders" FunctionName="IndiaHomesModel.Store.spGetOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IndiaHomesModel.spGetOrders_Result">
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HotelDescription" ColumnName="HotelDescription" />
+                <ScalarProperty Name="HotelImages" ColumnName="HotelImages" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="Ratings" ColumnName="Ratings" />
+                <ScalarProperty Name="RoomDescription" ColumnName="RoomDescription" />
+                <ScalarProperty Name="RoomImages" ColumnName="RoomImages" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetUserAccount" FunctionName="IndiaHomesModel.Store.spGetUserAccount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IndiaHomesModel.spGetUserAccount_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spLogAppException" FunctionName="IndiaHomesModel.Store.spLogAppException" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,10 @@
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\IndiaHomesDAL.dll.config
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\IndiaHomesDAL.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\IndiaHomesDAL.pdb
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\EntityFramework.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\EntityFramework.SqlServer.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\EntityFramework.xml
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\bin\Debug\EntityFramework.SqlServer.xml
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\obj\Debug\IndiaHomesDAL.csprojResolveAssemblyReference.cache
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\obj\Debug\IndiaHomesDAL.dll
+G:\IndiaHomes\IndiaHomes\IndiaHomesDAL\obj\Debug\IndiaHomesDAL.pdb

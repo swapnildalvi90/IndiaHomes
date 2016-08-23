@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="98b65e656ee24daab22d86ed7d1d7742" Name="Diagram1">
+        <EntityTypeShape EntityType="IndiaHomesModel.Account" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.Address" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.Amenity" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.AppException" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.Availibility" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.Customer" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.DBException" Width="1.5" PointX="2.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.Hotel" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.HotelAmenity" Width="1.5" PointX="2.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.HotelRoom" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.Order" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IndiaHomesModel.PromoCode" Width="1.5" PointX="4.75" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="IndiaHomesModel.FK_Order_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="IndiaHomesModel.FK_Hotel_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="IndiaHomesModel.FK_Availibility_HotelRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="IndiaHomesModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="IndiaHomesModel.FK_HotelRoom_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="IndiaHomesModel.FK_Order_HotelRoom" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
