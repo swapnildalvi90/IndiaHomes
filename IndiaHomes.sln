@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndiaHomes.DAL", "IndiaHomesDAL\IndiaHomes.DAL.csproj", "{16F2BE78-9734-4525-82EF-9056CE645F20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndiaHomes.Database.UnitTests", "IndiaHomes.Database.UnitTests\IndiaHomes.Database.UnitTests.csproj", "{19D16219-6228-4F28-A696-315ECF07522C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16F2BE78-9734-4525-82EF-9056CE645F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F2BE78-9734-4525-82EF-9056CE645F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F2BE78-9734-4525-82EF-9056CE645F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F2BE78-9734-4525-82EF-9056CE645F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D16219-6228-4F28-A696-315ECF07522C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D16219-6228-4F28-A696-315ECF07522C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D16219-6228-4F28-A696-315ECF07522C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D16219-6228-4F28-A696-315ECF07522C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
